@@ -158,15 +158,45 @@
             color: #ff6900;
         }
 
+        /* Menu hamburguesa */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            transition: all 0.3s;
+            border-radius: 3px;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
         /* Hero Section */
         .hero {
             position: relative;
-            background: linear-gradient(135deg, rgba(255, 105, 0, 0.9) 0%, rgba(255, 133, 51, 0.9) 100%), 
-                        url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1600&q=80') center/cover;
+            background: linear-gradient(135deg, #ff6900 0%, #ff8533 100%);
             color: white;
-            padding: 120px 20px;
-            text-align: center;
+            padding: 0;
+            text-align: left;
             overflow: hidden;
+            min-height: 600px;
+            display: flex;
+            align-items: stretch;
         }
 
         .hero::before {
@@ -176,11 +206,33 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 105, 0, 0.85) 0%, rgba(255, 133, 51, 0.85) 100%);
+            background: none;
             z-index: 1;
         }
 
-        .hero > * {
+        .hero-image {
+            width: 50%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .hero-content {
+            width: 50%;
+            padding: 80px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             position: relative;
             z-index: 2;
         }
@@ -188,19 +240,21 @@
         .hero h1 {
             font-size: 48px;
             margin-bottom: 20px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 100%;
+            margin-left: 0;
+            margin-right: 0;
             animation: fadeInUp 1s ease-out;
+            line-height: 1.3;
         }
 
         .hero p {
-            font-size: 20px;
-            margin-bottom: 30px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 18px;
+            margin-bottom: 40px;
+            max-width: 100%;
+            margin-left: 0;
+            margin-right: 0;
             animation: fadeInUp 1s ease-out 0.3s both;
+            line-height: 1.6;
         }
 
         .cta-button {
@@ -577,35 +631,6 @@
             font-size: 14px;
         }
 
-        /* Menu hamburguesa */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background-color: #333;
-            transition: all 0.3s;
-            border-radius: 3px;
-        }
-
-        .menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-
-        /* Responsive */
         @media (max-width: 1024px) {
             .nav-links {
                 gap: 20px;
@@ -613,6 +638,22 @@
 
             .nav-links a {
                 font-size: 14px;
+            }
+
+            .hero {
+                min-height: 500px;
+            }
+
+            .hero-content {
+                padding: 60px 40px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero p {
+                font-size: 16px;
             }
         }
 
@@ -655,7 +696,20 @@
             }
 
             .hero {
-                padding: 80px 20px;
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .hero-image {
+                width: 100%;
+                min-height: 300px;
+                order: -1;
+            }
+
+            .hero-content {
+                width: 100%;
+                padding: 40px 20px;
+                text-align: center;
             }
 
             .hero h1 {
@@ -663,7 +717,8 @@
             }
 
             .hero p {
-                font-size: 16px;
+                font-size: 14px;
+                margin-bottom: 30px;
             }
 
             .section-title {
@@ -694,7 +749,15 @@
             }
 
             .hero p {
-                font-size: 14px;
+                font-size: 13px;
+            }
+
+            .hero-content {
+                padding: 30px 15px;
+            }
+
+            .hero-image {
+                min-height: 250px;
             }
 
             .section-title {
@@ -748,9 +811,14 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>Creemos en la energía que nos ayuda a avanzar</h1>
-        <p>Impulsamos una transición energética eficiente y sostenible para todos, combinando innovación, tecnología y compromiso con el futuro.</p>
-        <a href="#servicios" class="cta-button">Descubre más</a>
+        <div class="hero-image">
+            <img src="scoupe.png" alt="Repsol Scoop">
+        </div>
+        <div class="hero-content">
+            <h1>Creemos en la energía que nos ayuda a avanzar</h1>
+            <p>Impulsamos una transición energética eficiente y sostenible para todos, combinando innovación, tecnología y compromiso con el futuro.</p>
+            <a href="#servicios" class="cta-button" style="max-width: 200px;">Descubre más</a>
+        </div>
     </section>
 
     <!-- Servicios Section -->
