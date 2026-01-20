@@ -211,24 +211,26 @@
         }
 
         .hero-image {
-            width: 50%;
+            width: 40%;
             position: relative;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             background: white;
+            padding: 40px;
         }
 
         .hero-image img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            max-width: 450px;
+            object-fit: contain;
             animation: slideInLeft 1s ease-out;
         }
 
         .hero-content {
-            width: 50%;
+            width: 60%;
             padding: 80px 60px;
             display: flex;
             flex-direction: column;
